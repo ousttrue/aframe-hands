@@ -7,7 +7,7 @@ A-Frame Hand-Tracking practice.
 html と javascript を直書きの方針。
 
 - なるべく JSDoc を書いて tsserver の恩恵が受けられるようにする
-- public を gh-pages に展開する
+- master の docs を gh-pages に指定
 
 ## TODO
 
