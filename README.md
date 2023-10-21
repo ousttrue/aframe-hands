@@ -25,6 +25,9 @@ html と javascript を直書きの方針。
 ### immersive navigation
 - [Meta Quest Browserにnavigationが“標準実装”されたのでWebXRでVRモードのまま遷移できるようになりました](https://zenn.dev/ikkou/articles/fe5b177a53c078)
 
+
+- https://aframe.io/docs/1.4.0/components/link.html
+
 ## https
 
 https で host  する。

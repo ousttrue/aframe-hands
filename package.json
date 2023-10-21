@@ -1,0 +1,19 @@
+{
+  "name": "aframe-hands",
+  "version": "1.0.0",
+  "description": "A-Frame Hand-Tracking practice.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/aframe": "^1.2.4",
+    "@types/three": "^0.157.2",
+    "@types/webxr": "^0.5.6"
+  }
+}

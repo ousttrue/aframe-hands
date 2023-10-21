@@ -1,10 +1,22 @@
+<!doctype html>
 <html>
   <head>
+    <meta charset="utf-8" />
     <title>aframe-hand</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script type="module" src="./js/hand-tracking.js"></script>
+    <script type="module" src="./js/hand-visual.js"></script>
   </head>
   <body>
-    <a-scene>
+    <a-scene
+      raycaster="far: 100; objects: [link];"
+      cursor="rayOrigin: mouse"
+      info-message="htmlSrc: #messageText"
+      webxr="referenceSpaceType: bounded-floor"
+    >
+      <a-sky color="#ECECEC"></a-sky>
+      <a-entity hand-tracking="hand: left" hand-visual></a-entity>
+      <a-entity hand-tracking="hand: right" hand-visual></a-entity>
       <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
       <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
       <a-cylinder
@@ -14,12 +26,18 @@
         color="#FFC65D"
       ></a-cylinder>
       <a-plane
-        position="0 0 -4"
+        wireframe="true"
+        width="10"
+        height="10"
+        segments-height="10"
+        segments-width="10"
         rotation="-90 0 0"
-        width="4"
-        height="4"
-        color="#7BC8A4"
+        color="#aaaaaa"
       ></a-plane>
+      <a-link
+        href="aframe_showcase/link-traversal/index.html"
+        position="-1 1.5 -4.0"
+      ></a-link>
     </a-scene>
   </body>
 </html>
