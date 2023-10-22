@@ -11,14 +11,20 @@ html と javascript を直書きの方針。
 
 ## TODO
 
-- [ ] hand-tracking pinch
 - [ ] anchor
-- [ ] mr occlusion
+- [x] mr occlusion
 - [ ] room scale bounds
-- [ ] navigation link to copy of [aframe samples](https://github.com/aframevr/aframe/tree/master/examples/showcase)
-- [ ] navigation link to copy of [immersive web samples](https://immersive-web.github.io/webxr-samples/)
-- [ ] hover
-- [ ] pinch
+
+Samples
+
+- [ ] [aframe samples](https://github.com/aframevr/aframe/tree/master/examples/showcase)
+- [ ] [immersive web samples](https://immersive-web.github.io/webxr-samples/)
+- [ ] [aframe-xylayout](https://github.com/binzume/aframe-xylayout)
+
+Hand-Tracking
+
+- [x] hover
+- [x] pinch
 - [ ] constraint
 - [ ] snap
 
@@ -27,6 +33,11 @@ html と javascript を直書きの方針。
 
 
 - https://aframe.io/docs/1.4.0/components/link.html
+
+### Plane Detection & Mask
+
+- [WebXR Plane Detection Module を試す](https://qiita.com/wakufactory/items/602bf4bc1ce075e7a279)
+- [【Three.js×AR】マスクでポータルや擬似オクルージョンを実装する](https://bagelee.com/programming/javascript-2/threejs-ar-mask/)
 
 ## https
 

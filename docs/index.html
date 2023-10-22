@@ -9,14 +9,16 @@
     <script type="module" src="./js/boxes.js"></script>
     <script type="module" src="./js/bb-hittest.js"></script>
     <script type="module" src="./js/bb-interaction.js"></script>
+    <script type="module" src="./js/pdetect.js"></script>
   </head>
   <body>
     <a-scene
       raycaster="far: 100; objects: [link];"
       cursor="rayOrigin: mouse"
       info-message="htmlSrc: #messageText"
-      webxr="referenceSpaceType: bounded-floor"
+      webxr="optionalFeatures:plane-detection"
       boxes
+      renderer="sortObjects: true;"
     >
       <a-entity hand-tracking="hand: left" hand-visual="hand: left"></a-entity>
       <a-entity
@@ -44,6 +46,8 @@
         href="aframe_showcase/link-traversal/index.html"
         position="-1 1.5 -4.0"
       ></a-link>
+
+      <a-entity pdetect></a-entity>
     </a-scene>
   </body>
 </html>
