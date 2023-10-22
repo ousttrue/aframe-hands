@@ -2,7 +2,7 @@
 import JOINTS from './hand-joints.js'
 
 /**
- * @typedef {Object} Tracking
+ * @typedef {Object} TrackingProps
  * @property {XRReferenceSpace | undefined} referenceSpace
  * @property {boolean} controllerPresent
  * @property {Float32Array} jointPoses
@@ -12,13 +12,17 @@ import JOINTS from './hand-joints.js'
  * @property {function} _checkIfControllerPresent
  */
 
+/**
+ * @typedef {AFRAME.AComponent & TrackingProps} Tracking;
+ */
+
 AFRAME.registerComponent('hand-tracking', {
     schema: {
         hand: { default: 'right', oneOf: ['left', 'right'] },
     },
 
     /**
-     * @this {AFRAME.AComponent & Tracking}
+     * @this {Tracking}
      * @param {string} msg
      */
     logger(msg) {
@@ -27,7 +31,7 @@ AFRAME.registerComponent('hand-tracking', {
 
     /**
      * call from AFRAME.utils.trackedControls.checkControllerPresentAndSetup
-     * @this {AFRAME.AComponent & Tracking}
+     * @this {Tracking}
      */
     injectTrackedControls() {
         this.logger('injectTrackedControls');
@@ -42,7 +46,7 @@ AFRAME.registerComponent('hand-tracking', {
 
     /**
      * call from AFRAME.utils.trackedControls.checkControllerPresentAndSetup
-     * @this {AFRAME.AComponent & Tracking}
+     * @this {Tracking}
      */
     addEventListeners() {
         this.logger('addEventListeners');
@@ -50,14 +54,14 @@ AFRAME.registerComponent('hand-tracking', {
 
     /**
      * call from AFRAME.utils.trackedControls.checkControllerPresentAndSetup
-     * @this {AFRAME.AComponent & Tracking}
+     * @this {Tracking}
      */
     removeEventListeners() {
         this.logger('removeEventListener');
     },
 
     /**
-     * @this {AFRAME.AComponent & Tracking}
+     * @this {Tracking}
      */
     _checkIfControllerPresent() {
         // @ts-ignore
@@ -67,7 +71,7 @@ AFRAME.registerComponent('hand-tracking', {
     },
 
     /**
-     * @this {AFRAME.AComponent & Tracking}
+     * @this {Tracking}
      */
     async _updateReferenceSpace() {
         const sceneEl = /** @type {AFRAME.AEntity} */ (this.el.sceneEl);
@@ -91,7 +95,7 @@ AFRAME.registerComponent('hand-tracking', {
 
     /**
      * AFRAME.Component lifecycle
-     * @this {AFRAME.AComponent & Tracking}
+     * @this {Tracking}
      */
     init() {
         this.logger('init: begin');
@@ -120,7 +124,7 @@ AFRAME.registerComponent('hand-tracking', {
 
     /**
      * AFRAME.Component lifecycle
-     * @this {AFRAME.AComponent & Tracking}
+     * @this {Tracking}
      */
     play() {
         this.logger('play');
@@ -132,7 +136,7 @@ AFRAME.registerComponent('hand-tracking', {
 
     /**
      * AFRAME.Component lifecycle
-     * @this {AFRAME.AComponent & Tracking}
+     * @this {Tracking}
      */
     pause() {
         this.logger('pause');
@@ -143,7 +147,7 @@ AFRAME.registerComponent('hand-tracking', {
 
     /**
      * AFRAME.Component lifecycle
-     * @this {AFRAME.AComponent & Tracking}
+     * @this {Tracking}
      */
     tick() {
         // @ts-ignore

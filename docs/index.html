@@ -6,6 +6,7 @@
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script type="module" src="./js/hand-tracking.js"></script>
     <script type="module" src="./js/hand-visual.js"></script>
+    <script type="module" src="./js/boxes.js"></script>
   </head>
   <body>
     <a-scene
@@ -13,6 +14,7 @@
       cursor="rayOrigin: mouse"
       info-message="htmlSrc: #messageText"
       webxr="referenceSpaceType: bounded-floor"
+      boxes
     >
       <a-sky color="#ECECEC"></a-sky>
       <a-entity hand-tracking="hand: left" hand-visual></a-entity>

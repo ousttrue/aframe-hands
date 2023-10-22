@@ -30,8 +30,12 @@ const Primitives = {
 }
 
 /**
- * @typedef {Object} Visual
+ * @typedef {Object} VisualProps
  * @property {AFRAME.AEntity[]} joints 
+ */
+
+/**
+ * @typedef {AFRAME.AComponent & VisualProps} Visual
  */
 
 AFRAME.registerComponent('hand-visual', {
@@ -48,8 +52,8 @@ AFRAME.registerComponent('hand-visual', {
     },
 
     /**
-     * @this {AFRAME.AComponent & Visual}
-     * @property {Float32Array} jointPoses
+     * @this {Visual}
+     * @param {Float32Array} jointPoses
      */
     _onUpdateJoints(jointPoses) {
         if (!this.joints) {
