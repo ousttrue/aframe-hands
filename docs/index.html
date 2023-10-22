@@ -19,8 +19,11 @@
       boxes
     >
       <a-sky color="#ECECEC"></a-sky>
-      <a-entity hand-tracking="hand: left" hand-visual></a-entity>
-      <a-entity hand-tracking="hand: right" hand-visual></a-entity>
+      <a-entity hand-tracking="hand: left" hand-visual="hand: left"></a-entity>
+      <a-entity
+        hand-tracking="hand: right"
+        hand-visual="hand: right"
+      ></a-entity>
       <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
       <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
       <a-cylinder

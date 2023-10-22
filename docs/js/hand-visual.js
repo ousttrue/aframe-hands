@@ -47,7 +47,9 @@ AFRAME.registerComponent('hand-visual', {
         this.el.sceneEl.addEventListener('handposeupdated',
             evt => {
                 // @ts-ignore
-                this._onUpdateJoints(evt.detail.jointPoses);
+                if (evt.detail.hand == this.data.hand) {
+                    this._onUpdateJoints(evt.detail.jointPoses);
+                }
             });
     },
 
