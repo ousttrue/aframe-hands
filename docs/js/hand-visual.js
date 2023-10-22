@@ -40,6 +40,7 @@ const Primitives = {
 
 AFRAME.registerComponent('hand-visual', {
     schema: {
+        hand: { default: 'right', oneOf: ['left', 'right'] },
         type: { default: 'primitive', oneOf: ['primitive', 'mesh'] },
     },
 
@@ -75,7 +76,7 @@ AFRAME.registerComponent('hand-visual', {
                     joint.setAttribute('radius', '0.005');
                 }
                 joint.object3D.matrixAutoUpdate = false;
-                this.el.appendChild(joint);
+                this.el.sceneEl.appendChild(joint);
                 this.joints.push(joint);
             }
         }

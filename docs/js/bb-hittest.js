@@ -57,16 +57,16 @@ AFRAME.registerComponent("bb-hittest", {
                 // @ts-ignore
                 p.fromArray(evt.detail.jointPoses, INDEX_TIP_INDEX * 16 + 12)
                 // @ts-ignore
-                this._test(evt.detail.source, p);
+                this._test(evt.detail.hand, p);
             });
     },
 
     /**
      * @this HitTest
-     * @param {any} source
+     * @param {string} hand
      * @param {THREE.Vector3} positionWorld
      */
-    _test(source, positionWorld) {
+    _test(hand, positionWorld) {
         if (!this.bb) {
             const obj = this.el.object3D;
             // @ts-ignore
@@ -76,20 +76,20 @@ AFRAME.registerComponent("bb-hittest", {
             this.bb = bb.clone();
         }
 
-        let status = this.statusMap.get(source);
+        let status = this.statusMap.get(hand);
         if (!status) {
             console.log('new HitStatus')
             status = new HitStatus(this.el)
-            this.statusMap.set(source, status);
+            this.statusMap.set(hand, status);
         }
 
         const { updated, isEnter } = status.test(this.bb, positionWorld)
         if (updated) {
             if (isEnter) {
-                this.el.emit('bb-enter', { source });
+                this.el.emit('bb-enter', { hand, handElement: this.el.object3D });
             }
             else {
-                this.el.emit('bb-exit', { source });
+                this.el.emit('bb-exit', { hand });
             }
         }
     }

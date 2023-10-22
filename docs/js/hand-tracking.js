@@ -1,11 +1,29 @@
 // @ts-check
 import JOINTS from './hand-joints.js'
+// import * as THREE from 'three';
+
+const THUMB_TIP_INDEX = 4;
+const INDEX_TIP_INDEX = 9;
+
+const PINCH_START_DISTANCE = 0.015;
+const PINCH_END_DISTANCE = 0.03;
+
+/**
+ * @typedef {Object} PinchDetail
+ * @property {string} hand
+ * @property {AFRAME.AEntity} handElement
+ * @property {THREE.Matrix4} matrix
+ */
 
 /**
  * @typedef {Object} TrackingProps
  * @property {XRReferenceSpace | undefined} referenceSpace
  * @property {boolean} controllerPresent
  * @property {Float32Array} jointPoses
+ * @property {THREE.Vector3} indexTipPosition
+ * @property {THREE.Vector3} thumbTipPosition
+ * @property {PinchDetail} pinchEventDetail
+ * @property {boolean} isPinched
  *
  * @property {function} logger
  * @property {function} _updateReferenceSpace
@@ -119,6 +137,17 @@ AFRAME.registerComponent('hand-tracking', {
 
         this.el.addEventListener('controllerconnected',
             () => this.logger('controllerconnected'));
+
+        // pinch
+        this.indexTipPosition = new THREE.Vector3();
+        this.thumbTipPosition = new THREE.Vector3();
+        this.pinchEventDetail = {
+            hand: this.data.hand,
+            handElement: this.el,
+            matrix: new THREE.Matrix4(),
+        };
+        this.isPinched = false;
+
         this.logger('init: end');
     },
 
@@ -162,10 +191,34 @@ AFRAME.registerComponent('hand-tracking', {
         // https://www.w3.org/TR/webxr-hand-input-1/
         // @ts-ignore
         if (frame.fillPoses(input.hand.values(), this.referenceSpace, this.jointPoses)) {
-            this.el.sceneEl.emit('handposeupdated', {
+            sceneEl.emit('handposeupdated', {
                 hand: this.data.hand,
                 jointPoses: this.jointPoses
             })
+
+            this.el.object3D.matrixAutoUpdate = false
+            this.el.object3D.matrix.fromArray(this.jointPoses)
+
+            // update pinch status
+            // 41, 42, 43
+            this.indexTipPosition.fromArray(
+                this.jointPoses, INDEX_TIP_INDEX * 16 + 12);
+            // 41, 42, 43
+            this.thumbTipPosition.fromArray(
+                this.jointPoses, THUMB_TIP_INDEX * 16 + 12);
+            var distance = this.indexTipPosition.distanceTo(this.thumbTipPosition);
+            if (!this.isPinched) {
+                if (distance < PINCH_START_DISTANCE) {
+                    this.isPinched = true;
+                    this.el.emit('pinchstarted', this.pinchEventDetail);
+                }
+            }
+            else {
+                if (distance > PINCH_END_DISTANCE) {
+                    this.isPinched = false;
+                    this.el.emit('pinchended', this.pinchEventDetail);
+                }
+            }
         }
     },
 });
