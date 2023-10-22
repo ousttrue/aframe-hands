@@ -162,7 +162,7 @@ AFRAME.registerComponent('hand-tracking', {
         // https://www.w3.org/TR/webxr-hand-input-1/
         // @ts-ignore
         if (frame.fillPoses(input.hand.values(), this.referenceSpace, this.jointPoses)) {
-            this.el.emit('handposeupdated', {
+            this.el.sceneEl.emit('handposeupdated', {
                 hand: this.data.hand,
                 jointPoses: this.jointPoses
             })

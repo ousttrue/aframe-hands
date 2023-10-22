@@ -16,7 +16,8 @@ AFRAME.registerComponent("boxes", {
                     box.setAttribute("depth", size);
                     box.setAttribute("position", `${x} ${y} ${z}`);
 
-                    box.setAttribute('bbpinch', '')
+                    box.setAttribute('bb-hittest', '')
+                    box.setAttribute('bb-hover', '')
 
                     scene.appendChild(box);
                 }
