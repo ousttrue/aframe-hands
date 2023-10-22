@@ -10,7 +10,7 @@
  * @typedef {AFRAME.AComponent & HoverProps} Hover
  */
 
-AFRAME.registerComponent("bb-hover", {
+AFRAME.registerComponent("bb-interaction", {
     /**
      * @this Hover
      */
@@ -33,7 +33,7 @@ AFRAME.registerComponent("bb-hover", {
      * @this Hover
      */
     _update() {
-        console.log(this.hits.size)
+        // console.log(this.hits.size)
         if (this.hits.size > 0) {
             this.el.setAttribute('color', 'yellow')
         }

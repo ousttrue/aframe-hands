@@ -17,7 +17,7 @@ AFRAME.registerComponent("boxes", {
                     box.setAttribute("position", `${x} ${y} ${z}`);
 
                     box.setAttribute('bb-hittest', '')
-                    box.setAttribute('bb-hover', '')
+                    box.setAttribute('bb-interaction', '')
 
                     scene.appendChild(box);
                 }
